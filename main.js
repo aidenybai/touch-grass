@@ -8,7 +8,7 @@ const start = () => {
       minDetectionConfidence: 0.8,
       minTrackingConfidence: 0.75,
     },
-    assetsPath: '/assets',
+    assetsPath: '/PUBLIC/assets',
   });
 
   handsfree.disablePlugins('browser');
@@ -112,7 +112,3 @@ const handler = () => {
 
 window.addEventListener('click', handler);
 window.addEventListener('touchstart', handler);
-
-// if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-//   navigator.mediaDevices.getUserMedia({ video: true });
-// }
