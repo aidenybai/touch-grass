@@ -113,6 +113,6 @@ const handler = () => {
 window.addEventListener('click', handler);
 window.addEventListener('touchstart', handler);
 
-if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-  navigator.mediaDevices.getUserMedia({ video: true });
-}
+// if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+//   navigator.mediaDevices.getUserMedia({ video: true });
+// }
