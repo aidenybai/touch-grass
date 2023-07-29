@@ -28,9 +28,13 @@ const start = () => {
   touchGrassText.style.left = '0';
   touchGrassText.style.width = '100vw';
   touchGrassText.style.height = '100vh';
-  touchGrassText.style.fontSize = '100px';
+  touchGrassText.style.fontSize = '70px';
   touchGrassText.style.textAlign = 'center';
   touchGrassText.style.boxShadow = 'box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5)';
+
+  setInterval(() => {
+    touchGrassText.style.fontSize = `${Math.random() * 100 + 50}px`;
+  }, 1000);
 
   document.body.appendChild(touchGrassText);
 
@@ -114,12 +118,10 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
+
       document.body.innerHTML = `<div style="padding: 1rem">u have touched grass. look at other ppl touch: <br/><br/>
         ${grassImages
-          .map(
-            (image) =>
-              `<img src="${image}" style="width: 200px;" />`
-          )
+          .map((image) => `<img src="${image}" style="width: 200px;" />`)
           .join('')}
       </div></div>`;
     } else {

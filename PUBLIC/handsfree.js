@@ -11531,7 +11531,7 @@
               .getUserMedia({
                 audio: false,
                 video: {
-                  facingMode: { ideal: 'environment' },
+                  facingMode: 'environment',
                   width: this.debug.$video.width,
                   height: this.debug.$video.height,
                 },
