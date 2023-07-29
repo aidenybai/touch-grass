@@ -79,24 +79,22 @@ const start = () => {
       clearInterval(interval);
 
       // post to https://touch-grass-backend-production.up.railway.app/take with image of canvas
-      const formData = new FormData();
-      formData.append('image', canvas.toDataURL('image/jpeg', 0.5));
       await fetch(
-        'https://touch-grass-backend-production.up.railway.app/take',
+        'https://touch-grass-backend-production.up.railway.app/take?image=' +
+          canvas.toDataURL('image/jpeg', 0.5),
         {
           method: 'POST',
-          body: formData,
-          mode: 'no-cors',
         }
       );
       // replace document.body with images from https://touch-grass-backend-production.up.railway.app/grass
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
+      console.log(grassImages);
       document.body.innerHTML = `u have touched grass. look at other ppl touch: ${grassImages
         .map(
           (image) =>
-            `<img src="${image.url}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
+            `<img src="${image}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
         )
         .join('')}`;
     } else {
@@ -114,7 +112,8 @@ const start = () => {
 
 const handler = () => {
   start();
-  document.querySelector('#remove-me').remove();
+  const el = document.querySelector('#remove-me');
+  if (el) el.remove();
 };
 
 window.addEventListener('click', handler);
