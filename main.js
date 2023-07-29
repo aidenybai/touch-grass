@@ -101,7 +101,7 @@ const start = () => {
         'https://touch-grass-backend-production.up.railway.app/take',
         {
           body: JSON.stringify({
-            image: canvas.toDataURL('image/jpeg', 0.1),
+            image: canvas.toDataURL('image/jpeg', 0.01),
           }),
           headers: {
             'Content-Type': 'application/json',
