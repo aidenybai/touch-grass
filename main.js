@@ -1,4 +1,5 @@
 import Handsfree from 'handsfree';
+import audioFile from './PUBLIC/audio/linus.mp3';
 
 const start = () => {
   const handsfree = new Handsfree({
@@ -15,6 +16,9 @@ const start = () => {
   handsfree.disablePlugins('core');
   handsfree.plugin.palmPointers.disable();
   handsfree.start();
+  document.querySelector('video').autoplay = true;
+  document.querySelector('video').playsInline = true;
+  document.querySelector('video').muted = true;
 
   const touchGrassText = document.createElement('div');
   touchGrassText.innerHTML = 'TOUCH GRASS';
@@ -110,9 +114,10 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
-      handsfree.stop();
-      document.querySelector('.handsfree-canvas')?.remove();
-      document.querySelector('video')?.remove();
+      // handsfree.stop();
+      setInterval(() => {
+        document.querySelector('video')?.hidden = true;
+      }, 1)
       document.body.innerHTML = `u have touched grass. look at other ppl touch: <br/><br/>
       <div class="glide">
         <div class="glide__arrows" data-glide-el="controls">
@@ -133,7 +138,7 @@ const start = () => {
     } else {
       touchGrassText.hidden = false;
       if (audioPlaying) return;
-      const audio = new Audio('/audio/linus.mp3');
+      const audio = new Audio(audioFile);
       audio.play();
       audio.onended = () => {
         audioPlaying = false;
