@@ -105,7 +105,10 @@ const start = () => {
   }, 100);
 };
 
-window.addEventListener('click', () => {
+const handler = () => {
   start();
   document.querySelector('#remove-me').remove();
-});
+};
+
+window.addEventListener('click', handler);
+window.addEventListener('touchstart', handler);
