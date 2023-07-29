@@ -5094,7 +5094,7 @@
         deviceId: null,
         // Which camera to use on the device
         // Possible values: 'user' (front), 'environment' (back)
-        facingMode: 'user',
+        facingMode: 'environment',
         // Video dimensions
         idealWidth: 320,
         idealHeight: 240,
