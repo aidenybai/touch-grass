@@ -33,7 +33,7 @@ const start = () => {
   touchGrassText.style.boxShadow = 'box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5)';
 
   setInterval(() => {
-    touchGrassText.style.fontSize = `${Math.random() * 100 + 50}px`;
+    touchGrassText.style.fontSize = `${Math.random() * 100 + 70}px`;
   }, 1000);
 
   document.body.appendChild(touchGrassText);
