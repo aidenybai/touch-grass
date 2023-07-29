@@ -1618,7 +1618,7 @@
      * update threejs object position and orientation from the detected hand pose
      * threejs has a "scene" model, so we don't have to specify what to draw each frame,
      * instead we put objects at right positions and threejs renders them all
-     * @param {*} hand 
+     * @param {*} hand
      */
 
 
@@ -4383,7 +4383,7 @@
 
   /**
    * The following are all the defaults
-   * 
+   *
    * @see https://handsfree.js.org/ref/prop/config
    */
   var defaultConfig = {
@@ -4432,7 +4432,7 @@
           height: 720
         }
       },
-      // The video source to use. 
+      // The video source to use.
       // - If not present one will be created and use the webcam
       // - If present without a source then the webcam will be used
       // - If present with a source then that source will be used instead of the webcam
@@ -4517,7 +4517,7 @@
       enabled: false,
       // Outputs only the top 25 pose landmarks if true,
       // otherwise shows all 33 full body pose landmarks
-      // - Note: Setting this to true may result in better accuracy 
+      // - Note: Setting this to true may result in better accuracy
       upperBodyOnly: false,
       // Helps reduce jitter over multiple frames if true
       smoothLandmarks: true,
@@ -4532,7 +4532,7 @@
       // The backend to use: 'webgl' or 'wasm'
       // 🚨 Currently only webgl is supported
       backend: 'webgl',
-      // How many frames to go without running the bounding box detector. 
+      // How many frames to go without running the bounding box detector.
       // Set to a lower value if you want a safety net in case the mesh detector produces consistently flawed predictions.
       maxContinuousChecks: Infinity,
       // Threshold for discarding a prediction
@@ -7466,7 +7466,7 @@
    * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
    * This work is subject to the terms at http://greensock.com/standard-license or for
    * Club GreenSock members, the software agreement that was issued with your membership.
-   * 
+   *
    * @author: Jack Doyle, jack@greensock.com
    **/
 
@@ -8730,7 +8730,7 @@
             //   y: this.origScrollTop[n] + (hands.origPinch[n][0].y - hands.curPinch[n][0].y) * height,
             //   overwrite: true,
             //   ease: 'linear.easeNone',
-            //   immediateRender: true  
+            //   immediateRender: true
             // })
             // With this one it continuously moves based on the pinch drag distance
             this.handsfree.TweenMax.to(this.tweenScroll[n], 1, {
@@ -9004,7 +9004,7 @@
 
   };
 
-  // Maps handsfree pincher events to 
+  // Maps handsfree pincher events to
   const eventMap = {
     start: 'mousedown',
     held: 'mousemove',
@@ -9254,7 +9254,7 @@
     /////////////////////////////////////////////////////////////
 
     Use "CTRL+F + #n" to hop around in this file
-    
+
     #1 Setup
     #2 Loop
     #3 Plugins
@@ -9274,12 +9274,12 @@
   };
   /* ////////////////////////// #1 SETUP /////////////////////////
 
-                ███████╗███████╗████████╗██╗   ██╗██████╗ 
+                ███████╗███████╗████████╗██╗   ██╗██████╗
                 ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗
                 ███████╗█████╗     ██║   ██║   ██║██████╔╝
-                ╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝ 
-                ███████║███████╗   ██║   ╚██████╔╝██║     
-                ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝     
+                ╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝
+                ███████║███████╗   ██║   ╚██████╔╝██║
+                ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝
 
   ///////////////////////////////////////////////////////////// */
   // Used to separate video, canvas, etc ID's
@@ -9293,7 +9293,7 @@
     /**
      * Let's do this 🖐
      * @see https://handsfree.js.org/ref/prop/config
-     * 
+     *
      * @param {Object} config The initial config to use
      */
     constructor(config = {}) {
@@ -9377,11 +9377,11 @@
     /**
      * Cleans and sanitizes the config, setting up defaults
      * @see https://handsfree.js.org/ref/method/cleanConfig
-     * 
+     *
      * @param config {Object} The config object to use
      * @param defaults {Object} (Optional) The defaults to use.
      *    If null, then the original Handsfree.js defaults will be used
-     * 
+     *
      * @returns {Object} The cleaned config
      */
 
@@ -9442,7 +9442,7 @@
     /**
      * Updates the instance, loading required dependencies
      * @see https://handsfree.js.org./ref/method/update
-     * 
+     *
      * @param {Object} config The changes to apply
      * @param {Function} callback Called after
      */
@@ -9490,20 +9490,20 @@
       }
     }
     /* /////////////////////////// #2 LOOP /////////////////////////
-    
-                      ██╗      ██████╗  ██████╗ ██████╗ 
+
+                      ██╗      ██████╗  ██████╗ ██████╗
                       ██║     ██╔═══██╗██╔═══██╗██╔══██╗
                       ██║     ██║   ██║██║   ██║██████╔╝
-                      ██║     ██║   ██║██║   ██║██╔═══╝ 
-                      ███████╗╚██████╔╝╚██████╔╝██║     
-                      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     
-      
+                      ██║     ██║   ██║██║   ██║██╔═══╝
+                      ███████╗╚██████╔╝╚██████╔╝██║
+                      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝
+
     /////////////////////////////////////////////////////////////// */
 
     /**
      * Starts the trackers
      * @see https://handsfree.js.org/ref/method/start
-     * 
+     *
      * @param {Function} callback The callback to run before the very first frame
      */
 
@@ -9554,7 +9554,7 @@
     /**
      * Stops tracking
      * - Currently this just stops the tracker
-     * 
+     *
      * @see https://handsfree.js.org/ref/method/stop
      */
 
@@ -9565,7 +9565,7 @@
     /**
      * Pauses inference to free up resources but maintains the
      * webcam stream so that it can be unpaused instantly
-     * 
+     *
      * @see https://handsfree.js.org/ref/method/pause
      */
 
@@ -9575,7 +9575,7 @@
     }
     /**
      * Resumes the loop from an unpaused state
-     * 
+     *
      * @see https://handsfree.js.org/ref/method/pause
      */
 
@@ -9628,14 +9628,14 @@
       this.isLooping && requestAnimationFrame(() => this.isLooping && this.loop());
     }
     /* //////////////////////// #3 PLUGINS /////////////////////////
-    
+
           ██████╗ ██╗     ██╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
           ██╔══██╗██║     ██║   ██║██╔════╝ ██║████╗  ██║██╔════╝
           ██████╔╝██║     ██║   ██║██║  ███╗██║██╔██╗ ██║███████╗
           ██╔═══╝ ██║     ██║   ██║██║   ██║██║██║╚██╗██║╚════██║
           ██║     ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║███████║
           ╚═╝     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
-    
+
       /////////////////////////////////////////////////////////////*/
 
     /**
@@ -9707,7 +9707,7 @@
     /**
      * Enable plugins by tags
      * @see https://handsfree.js.org/ref/method/enablePlugins
-     * 
+     *
      * @param {string|object} tags (Optional) The plugins with tags to enable. Enables all if null
      */
 
@@ -9725,7 +9725,7 @@
     /**
      * Disable plugins by tags
      * @see https://handsfree.js.org/ref/method/disablePlugins
-     * 
+     *
      * @param {string|object} tags (Optional) The plugins with tags to disable. Disables all if null
      */
 
@@ -9769,20 +9769,20 @@
       });
     }
     /* //////////////////////// #4 GESTURES /////////////////////////
-    
+
      ██████╗ ███████╗███████╗████████╗██╗   ██╗██████╗ ███████╗███████╗
     ██╔════╝ ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝██╔════╝
     ██║  ███╗█████╗  ███████╗   ██║   ██║   ██║██████╔╝█████╗  ███████╗
     ██║   ██║██╔══╝  ╚════██║   ██║   ██║   ██║██╔══██╗██╔══╝  ╚════██║
     ╚██████╔╝███████╗███████║   ██║   ╚██████╔╝██║  ██║███████╗███████║
      ╚═════╝ ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
-                                                                       
+
       /////////////////////////////////////////////////////////////*/
 
     /**
      * Adds a callback to be called whenever a gesture is detected
      * @see https://handsfree.js.org/ref/method/useGesture
-     * 
+     *
      * @param {Object} config The config object
      * @returns {Gesture} The gesture object
      */
@@ -9837,7 +9837,7 @@
     /**
      * Enable gestures by tags
      * @see https://handsfree.js.org/ref/method/enableGestures
-     * 
+     *
      * @param {string|object} tags (Optional) The gestures with tags to enable. Enables all if null
      */
 
@@ -9855,7 +9855,7 @@
     /**
      * Disable Gestures by tags
      * @see https://handsfree.js.org/ref/method/disableGestures
-     * 
+     *
      * @param {string|object} tags (Optional) The Gestures with tags to disable. Disables all if null
      */
 
@@ -9871,20 +9871,20 @@
       });
     }
     /* ///////////////////////// #5 EVENTS /////////////////////////
-    
+
           ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗
           ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
           █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║   ███████╗
           ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ╚════██║
           ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║   ███████║
           ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
-                                                        
+
     ///////////////////////////////////////////////////////////// */
 
     /**
      * Triggers a document event with `handsfree-${eventName}`
      * @see https://handsfree.js.org/ref/method/emit
-     * 
+     *
      * @param {String} eventName The name of the event
      * @param {*} detail (optional) Data to send with the event
      */
@@ -9912,20 +9912,20 @@
       }, opts);
     }
     /* //////////////////////// #6 HELPERS /////////////////////////
-    
+
         ██╗  ██╗███████╗██╗     ██████╗ ███████╗██████╗ ███████╗
         ██║  ██║██╔════╝██║     ██╔══██╗██╔════╝██╔══██╗██╔════╝
         ███████║█████╗  ██║     ██████╔╝█████╗  ██████╔╝███████╗
         ██╔══██║██╔══╝  ██║     ██╔═══╝ ██╔══╝  ██╔══██╗╚════██║
         ██║  ██║███████╗███████╗██║     ███████╗██║  ██║███████║
         ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝╚══════╝
-                                                                  
+
       /////////////////////////////////////////////////////////////*/
 
     /**
      * Helper to normalze a value within a max range
      * @see https://handsfree.js.org/ref/method/normalize
-     * 
+     *
      * @param {Number} value The value to normalize
      * @param {Number} max The maximum value to normalize to, or the upper bound
      * @param {Number} min The minimum value to normalize to, or the lower bound
@@ -9938,7 +9938,7 @@
     /**
      * Gets the webcam media stream into handsfree.debug.$video
      * @see https://handsfree.js.org/ref/method/getUserMedia
-     * 
+     *
      * @param {Object} callback The callback to call after the stream is received
      */
 
@@ -9961,7 +9961,7 @@
             navigator.mediaDevices.getUserMedia({
               audio: false,
               video: {
-                facingMode: 'user',
+                facingMode:  { "ideal": "environment" },
                 width: this.debug.$video.width,
                 height: this.debug.$video.height
               }
@@ -10006,14 +10006,14 @@
       });
     }
     /* //////////////////////// #7 DEBUGGER ////////////////////////
-    
-    ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗  ██████╗ ███████╗██████╗ 
+
+    ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗  ██████╗ ███████╗██████╗
     ██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝ ██╔════╝ ██╔════╝██╔══██╗
     ██║  ██║█████╗  ██████╔╝██║   ██║██║  ███╗██║  ███╗█████╗  ██████╔╝
     ██║  ██║██╔══╝  ██╔══██╗██║   ██║██║   ██║██║   ██║██╔══╝  ██╔══██╗
     ██████╔╝███████╗██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝███████╗██║  ██║
     ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝
-                                                                       
+
       /////////////////////////////////////////////////////////////*/
 
     /**
