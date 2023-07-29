@@ -82,7 +82,7 @@ const start = () => {
       const formData = new FormData();
       formData.append('image', canvas.toDataURL('image/jpeg', 0.5));
       await fetch(
-        'https://touch-grass-backend-production.up.railway.app/take',
+        'https://touch-grass-backend-production.up.railw y.app/take',
         {
           method: 'POST',
           body: formData,
@@ -96,7 +96,7 @@ const start = () => {
       document.body.innerHTML = grassImages
         .map(
           (image) =>
-            `<img src="${image}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
+            `<img src="${image.url}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
         )
         .join('');
     } else {
