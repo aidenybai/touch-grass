@@ -29,19 +29,6 @@ const start = () => {
 
   document.body.appendChild(touchGrassText);
 
-  const goodJobText = document.createElement('div');
-  goodJobText.innerText = 'good job :)) keep touching it';
-  goodJobText.style.fontWeight = 'bold';
-  goodJobText.style.position = 'fixed';
-  goodJobText.style.top = '40%';
-  goodJobText.style.left = '0';
-  goodJobText.style.width = '100vw';
-  goodJobText.style.height = '100vh';
-  goodJobText.style.fontSize = '50px';
-  goodJobText.style.textAlign = 'center';
-
-  document.body.appendChild(goodJobText);
-
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -79,10 +66,9 @@ const start = () => {
   };
 
   touchGrassText.hidden = false;
-  goodJobText.hidden = true;
 
   let audioPlaying = false;
-  setInterval(() => {
+  let interval = setInterval(async () => {
     touchGrassText.style.color = getRandomColor();
     const isTouchingGrass = handsfree.data.hands?.landmarks?.flat().length > 0;
     const canvas = convertVideoElementToCanvas(document.querySelector('video'));
@@ -90,10 +76,30 @@ const start = () => {
 
     if (isTouchingGrass && greenness > 0.05) {
       touchGrassText.hidden = true;
-      goodJobText.hidden = false;
+      clearInterval(interval);
+
+      // post to https://touch-grass-backend-production.up.railway.app/take with image of canvas
+      const formData = new FormData();
+      formData.append('image', canvas.toDataURL('image/jpeg', 0.5));
+      await fetch(
+        'https://touch-grass-backend-production.up.railway.app/take',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+      // replace document.body with images from https://touch-grass-backend-production.up.railway.app/grass
+      const grassImages = await fetch(
+        'https://touch-grass-backend-production.up.railway.app/grass'
+      ).then((res) => res.json());
+      document.body.innerHTML = grassImages
+        .map(
+          (image) =>
+            `<img src="${image}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
+        )
+        .join('');
     } else {
       touchGrassText.hidden = false;
-      goodJobText.hidden = true;
       if (audioPlaying) return;
       const audio = new Audio('/audio/linus.mp3');
       audio.play();
