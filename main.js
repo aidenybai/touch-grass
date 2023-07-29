@@ -82,7 +82,7 @@ const start = () => {
       const formData = new FormData();
       formData.append('image', canvas.toDataURL('image/jpeg', 0.5));
       await fetch(
-        'https://touch-grass-backend-production.up.railw y.app/take',
+        'https://touch-grass-backend-production.up.railway.app/take',
         {
           method: 'POST',
           body: formData,
@@ -93,12 +93,12 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
-      document.body.innerHTML = grassImages
+      document.body.innerHTML = `u have touched grass. look at other ppl touch: ${grassImages
         .map(
           (image) =>
             `<img src="${image.url}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
         )
-        .join('');
+        .join('')}`;
     } else {
       touchGrassText.hidden = false;
       if (audioPlaying) return;
