@@ -101,7 +101,7 @@ const start = () => {
         'https://touch-grass-backend-production.up.railway.app/take',
         {
           body: JSON.stringify({
-            image: canvas.toDataURL('image/jpeg', 0.0025),
+            image: canvas.toDataURL('image/jpeg', 0.01),
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -114,23 +114,14 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
-      document.body.innerHTML = `u have touched grass. look at other ppl touch: <br/><br/>
-      <div class="glide">
-        <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-        </div>
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            ${grassImages
-              .map(
-                (image) =>
-                  `<li class="glide__slide"><img src="${image}" style="width: 200px;" /></li>`
-              )
-              .join('')}
-          </ul>
-        </div>
-      </div>`;
+      document.body.innerHTML = `<div style="padding: 1rem">u have touched grass. look at other ppl touch: <br/><br/>
+        ${grassImages
+          .map(
+            (image) =>
+              `<img src="${image}" style="width: 200px;" />`
+          )
+          .join('')}
+      </div></div>`;
     } else {
       touchGrassText.hidden = false;
       if (audioPlaying) return;
