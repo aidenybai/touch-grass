@@ -110,6 +110,9 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
+      handsfree.stop();
+      document.querySelector('.handsfree-canvas')?.remove();
+      document.querySelector('video')?.remove();
       document.body.innerHTML = `u have touched grass. look at other ppl touch: <br/><br/>
       <div class="glide">
         <div class="glide__arrows" data-glide-el="controls">
