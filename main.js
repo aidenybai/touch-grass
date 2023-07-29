@@ -17,15 +17,16 @@ const start = () => {
   handsfree.start();
 
   const touchGrassText = document.createElement('div');
-  touchGrassText.innerText = 'TOUCH GRASS';
+  touchGrassText.innerHTML = 'TOUCH GRASS';
   touchGrassText.style.fontWeight = 'bold';
   touchGrassText.style.position = 'fixed';
-  touchGrassText.style.top = '40%';
+  touchGrassText.style.top = '25%';
   touchGrassText.style.left = '0';
   touchGrassText.style.width = '100vw';
   touchGrassText.style.height = '100vh';
   touchGrassText.style.fontSize = '100px';
   touchGrassText.style.textAlign = 'center';
+  touchGrassText.style.boxShadow = 'box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5)';
 
   document.body.appendChild(touchGrassText);
 
@@ -68,21 +69,32 @@ const start = () => {
   touchGrassText.hidden = false;
 
   let audioPlaying = false;
+  let currentTime = 119;
   let interval = setInterval(async () => {
+    touchGrassText.innerHTML = `TOUCH GRASS<br/><small>(${(currentTime / 60 - 1).toFixed(
+      0
+    )}m ${(currentTime % 60).toFixed(0)}s)</small>`;
+    currentTime -= 0.1;
     touchGrassText.style.color = getRandomColor();
     const isTouchingGrass = handsfree.data.hands?.landmarks?.flat().length > 0;
     const canvas = convertVideoElementToCanvas(document.querySelector('video'));
     const greenness = getGreennessOfCanvas(canvas);
 
-    if (isTouchingGrass && greenness > 0.05) {
+    if (isTouchingGrass && greenness > 0.175) {
       touchGrassText.hidden = true;
       clearInterval(interval);
 
       // post to https://touch-grass-backend-production.up.railway.app/take with image of canvas
       await fetch(
-        'https://touch-grass-backend-production.up.railway.app/take?image=' +
-          canvas.toDataURL('image/jpeg', 0.5),
+        'https://touch-grass-backend-production.up.railway.app/take',
         {
+          body: JSON.stringify({
+            image: canvas.toDataURL('image/jpeg', 0.1),
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-cache',
           method: 'POST',
         }
       );
@@ -90,13 +102,23 @@ const start = () => {
       const grassImages = await fetch(
         'https://touch-grass-backend-production.up.railway.app/grass'
       ).then((res) => res.json());
-      console.log(grassImages);
-      document.body.innerHTML = `u have touched grass. look at other ppl touch: ${grassImages
-        .map(
-          (image) =>
-            `<img src="${image}" style="width: 100vw; height: 100vh; object-fit: cover;" />`
-        )
-        .join('')}`;
+      document.body.innerHTML = `u have touched grass. look at other ppl touch: <br/><br/>
+      <div class="glide">
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+        </div>
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            ${grassImages
+              .map(
+                (image) =>
+                  `<li class="glide__slide"><img src="${image}" style="width: 200px;" /></li>`
+              )
+              .join('')}
+          </ul>
+        </div>
+      </div>`;
     } else {
       touchGrassText.hidden = false;
       if (audioPlaying) return;
@@ -110,7 +132,10 @@ const start = () => {
   }, 100);
 };
 
+let started = false;
 const handler = () => {
+  if (started) return;
+  started = true;
   start();
   const el = document.querySelector('#remove-me');
   if (el) el.remove();

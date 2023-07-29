@@ -7,12 +7,30 @@
       rel="icon"
       href="https://w1.pngwing.com/pngs/507/107/png-transparent-grass-sweet-grass-vetiver-commodity-wheatgrass-plant-stem-chrysopogon-grasses.png"
     />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@glidejs/glide/dist/css/glide.theme.min.css"
+    />
+
     <style>
+      html {
+        font-family: 'Inter', sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+
       html,
       body {
         margin: 0;
         padding: 0;
-        background: darkgreen;
+        background: #7c8174;
+        color: white;
+        font-size: 20px;
       }
       .handsfree-debugger {
         position: absolute;
@@ -32,22 +50,40 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
-      h1 {
+      #remove-me {
         position: absolute;
-        top: 40%;
+        top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-family: sans-serif;
-        font-size: 3rem;
         color: white;
-        text-shadow: 0 0 10px lightgreen;
         cursor: pointer;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem 6rem;
+        border-radius: 2rem;
+        text-align: center;
+        transition: all 0.25s ease;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+      }
+      #remove-me:hover {
+        background: rgba(0, 0, 0, 0.6);
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+      .mute {
+        opacity: 0.35;
       }
     </style>
-    <title>Touch Grass</title>
+    <title>BeOutside</title>
   </head>
   <body>
-    <h1 id="remove-me">Click to start touching grass</h1>
+    <div id="remove-me">
+      <small class="mute">TIME SENSITIVE</small>
+      <h1>⚠️ Time to BeOutside. ⚠️</h1>
+      <p>
+        2 min left to capture a BeOutside and see what your friends are up to!
+      </p>
+      <small class="mute">(click to begin)</small>
+    </div>
     <script src="./PUBLIC/handsfree.js" type="module"></script>
     <script src="./main.js" type="module"></script>
   </body>
