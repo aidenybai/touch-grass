@@ -71,16 +71,24 @@ const start = () => {
   let audioPlaying = false;
   let currentTime = 119;
   let interval = setInterval(async () => {
-    touchGrassText.innerHTML = `TOUCH GRASS<br/><small>(${(currentTime / 60 - 1).toFixed(
-      0
-    )}m ${(currentTime % 60).toFixed(0)}s)</small>`;
+    touchGrassText.innerHTML = `TOUCH GRASS<br/><small>(${(
+      currentTime / 60 -
+      1
+    ).toFixed(0)}m ${(currentTime % 60).toFixed(0)}s)</small>`;
     currentTime -= 0.1;
     touchGrassText.style.color = getRandomColor();
     const isTouchingGrass = handsfree.data.hands?.landmarks?.flat().length > 0;
     const canvas = convertVideoElementToCanvas(document.querySelector('video'));
     const greenness = getGreennessOfCanvas(canvas);
 
-    if (isTouchingGrass && greenness > 0.175) {
+    const isThreshold = greenness > 0.125;
+
+    if (isTouchingGrass && !isThreshold) {
+      touchGrassText.innerHTML = `<small>i see ur hand, but are u touching grass tho? ${
+        (greenness / 0.125).toFixed(2) * 100
+      }% sure</small>`;
+    }
+    if (isTouchingGrass && isThreshold) {
       touchGrassText.hidden = true;
       clearInterval(interval);
 
