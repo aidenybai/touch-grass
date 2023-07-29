@@ -8,7 +8,7 @@ const start = () => {
       minDetectionConfidence: 0.8,
       minTrackingConfidence: 0.75,
     },
-    assetsPath: '/assets',
+    // assetsPath: '/assets',
   });
 
   handsfree.disablePlugins('browser');
