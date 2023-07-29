@@ -86,6 +86,7 @@ const start = () => {
         {
           method: 'POST',
           body: formData,
+          mode: 'no-cors',
         }
       );
       // replace document.body with images from https://touch-grass-backend-production.up.railway.app/grass
